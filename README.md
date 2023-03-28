@@ -37,7 +37,7 @@ go version
 apt install make -y  
 apt install gcc -y  
 
-cd deploy
+cd ~/kube-sidecar-injector/deploy
 sed -i 's/image: sidecar-injector/image: k8sho\/sidecar-injector/g' deployment.yaml
 docker login   
   
