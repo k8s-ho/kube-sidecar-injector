@@ -37,8 +37,7 @@ go version
 apt install make -y  
 apt install gcc -y  
 
-docker login   
-  
+docker login
 ```
 ## Build and Deploy
 
