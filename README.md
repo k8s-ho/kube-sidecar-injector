@@ -37,8 +37,6 @@ go version
 apt install make -y  
 apt install gcc -y  
 
-cd ~/kube-sidecar-injector/deploy
-sed -i 's/image: sidecar-injector/image: k8sho\/sidecar-injector/g' deployment.yaml
 docker login   
   
 ```
@@ -47,13 +45,13 @@ docker login
 1. Build and push docker image:
 
 ```bash
-make docker-build docker-push IMAGE=quay.io/<your_quayio_username>/sidecar-injector:latest
+make docker-build docker-push IMAGE=k8s/sidecar-injector-test:latest
 ```
 
 2. Deploy the kube-sidecar-injector to kubernetes cluster:
 
 ```bash
-make deploy IMAGE=quay.io/<your_quayio_username>/sidecar-injector:latest
+make deploy IMAGE=k8s/sidecar-injector-test:latest
 ```
 
 3. Verify the kube-sidecar-injector is up and running:
