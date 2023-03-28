@@ -21,6 +21,29 @@ admissionregistration.k8s.io/v1beta1
 
 > Note: In addition, the `MutatingAdmissionWebhook` and `ValidatingAdmissionWebhook` admission controllers should be added and listed in the correct order in the admission-control flag of kube-apiserver.
 
+## Preparation before build and deployment(k8sho add)
+install docker & gcc & golang1.17 & make + setup
+```bash
+git clone https://github.com/morvencao/kube-sidecar-injector  
+apt update  
+apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin  
+systemctl start docker  
+
+wget https://golang.org/dl/go1.17.linux-amd64.tar.gz  
+sudo tar -xvf go1.17.linux-amd64.tar.gz  
+sudo mv go /usr/local  
+export PATH=$PATH:/usr/local/go/bin  
+go version  
+apt install make -y  
+apt install gcc -y  
+
+cd ~/kube-sidecar-injector
+sed -i 's/quay.io\/morvencao\/sidecar-injector:latest/k8sho\/sidecar-injector:latest/g'
+cd deploy
+sed -i 's/image: sidecar-injector/image: k8sho\/sidecar-injector/g' deployment.yaml
+docker login   
+  
+```
 ## Build and Deploy
 
 1. Build and push docker image:
